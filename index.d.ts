@@ -6,7 +6,7 @@ export interface AnimatedSwitchNavigatorConfig extends SwitchNavigatorConfig {
   transition?: React.ComponentType<Transition>;
 }
 
-export function createAnimatedSwitchNavigator(
+export default function createAnimatedSwitchNavigator(
   routeConfigMap: NavigationRouteConfigMap,
   switchConfig?: AnimatedSwitchNavigatorConfig
 ): NavigationContainer;
