@@ -36,7 +36,11 @@ class SwitchView extends React.Component {
       <Transitioning.View
         ref={this.containerRef}
         transition={transition}
-        style={{ flex: 1 }}
+        style={{ 
+          flex: 1, 
+          backgroundColor: 
+            this.props.navigationConfig.transitionBackgroundColor || 'transparent' 
+        }}
       >
         <SceneView
           component={ChildComponent}
