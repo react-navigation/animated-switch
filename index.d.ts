@@ -3,7 +3,7 @@ import { NavigationRouteConfigMap, SwitchNavigatorConfig, NavigationContainer } 
 import { Transition } from 'react-native-reanimated';
 
 export interface AnimatedSwitchNavigatorConfig extends SwitchNavigatorConfig {
-  transition?: React.Element<typeof Transition>;
+  transition?: React.ReactElement<typeof Transition>;
 }
 
 export default function createAnimatedSwitchNavigator(
