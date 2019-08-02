@@ -13,14 +13,16 @@
     "lib"
   ],
   "scripts": {
-    "prepare": "bob build",
     "lint": "eslint --ext .js,.ts,.tsx .",
+    "prepare": "bob build",
+    "release": "release-it",
     "typescript": "tsc --noEmit"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "8.1.0",
     "@react-native-community/bob": "0.6.1",
     "@react-navigation/core": "3.4.2",
+    "@release-it/conventional-changelog": "1.1.0",
     "@types/react": "16.8.24",
     "@types/react-native": "0.60.3",
     "commitlint": "8.1.0",
@@ -33,6 +35,7 @@
     "react-native": "0.60.4",
     "react-native-reanimated": "1.1.0",
     "react-navigation": "3.11.1",
+    "release-it": "12.3.5",
     "typescript": "3.5.3"
   },
   "peerDependencies": {
