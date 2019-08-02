@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { StyleSheet } from 'react-native';
 import { createNavigator, SceneView, SwitchRouter } from 'react-navigation';
 import { Transitioning, Transition } from 'react-native-reanimated';
 
@@ -36,7 +37,7 @@ class SwitchView extends React.Component {
       <Transitioning.View
         ref={this.containerRef}
         transition={transition}
-        style={{ flex: 1 }}
+        style={styles.container}
       >
         <SceneView
           component={ChildComponent}
@@ -56,3 +57,9 @@ export default function createAnimatedSwitchNavigator(
   const Navigator = createNavigator(SwitchView, router, switchConfig);
   return Navigator;
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
