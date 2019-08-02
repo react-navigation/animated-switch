@@ -1,9 +1,30 @@
 {
   "name": "react-navigation-animated-switch",
   "version": "0.2.1",
-  "description": "",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "description": "Animated switch for React Navigation",
+  "main": "lib/commonjs/index.js",
+  "react-native": "lib/module/index.js",
+  "module": "lib/module/index.js",
+  "types": "lib/typescript/src/index.d.ts",
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@react-native-community/bob": "0.6.1"
+  },
+  "scripts": {
+    "prepare": "bob build"
+  },
+  "files": [
+    "src",
+    "lib"
+  ],
+  "@react-native-community/bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
+  }
 }
