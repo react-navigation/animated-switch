@@ -5,6 +5,7 @@ declare module '@react-navigation/core' {
     NavigationRouteConfigMap,
     NavigationContainer,
     SwitchNavigatorConfig,
+    NavigationRouter,
   } from 'react-navigation';
 
   export const SceneView: React.ComponentType<{
@@ -15,14 +16,14 @@ declare module '@react-navigation/core' {
 
   export function createNavigator(
     StackView: React.ComponentType<any>,
-    router: any,
-    stackConfig: object
+    router: NavigationRouter<S, Options>,
+    navigatorConfig?: {} | null
   ): NavigationContainer;
 
   export function SwitchRouter(
     routeConfigMap: NavigationRouteConfigMap,
     switchConfig: SwitchNavigatorConfig & {
-      transition?: React.ElementType<Transition>;
+      transition?: React.ReactNode;
     }
   );
 }

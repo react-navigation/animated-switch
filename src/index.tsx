@@ -29,13 +29,13 @@ const DEFAULT_TRANSITION = (
 
 interface Props {
   navigation: NavigationProp<NavigationState> & {
-    navigationConfig: { transition?: React.ElementType<Transition> };
+    navigationConfig: { transition?: React.ReactNode };
   };
   descriptors: { [key: string]: NavigationDescriptor };
   screenProps?: ScreenProps;
 }
 
-class AnimatedSwitchView extends React.Component<Props> {
+class AnimatedSwitchView extends React.Component<Props, {}> {
   containerRef = React.createRef<TransitioningView>();
 
   componentDidUpdate(prevProps: Props) {
@@ -75,13 +75,13 @@ class AnimatedSwitchView extends React.Component<Props> {
 }
 
 export interface AnimatedSwitchNavigatorConfig extends SwitchNavigatorConfig {
-  transition?: React.ElementType<Transition>;
+  transition?: React.ReactNode;
 }
 
 export default function createAnimatedSwitchNavigator(
   routeConfigMap: NavigationRouteConfigMap,
   switchConfig: SwitchNavigatorConfig & {
-    transition?: React.ElementType<Transition>;
+    transition?: React.ReactNode;
   }
 ): NavigationContainer {
   const router = SwitchRouter(routeConfigMap, switchConfig);
