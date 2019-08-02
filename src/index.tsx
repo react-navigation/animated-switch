@@ -1,7 +1,24 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { createNavigator, SceneView, SwitchRouter } from 'react-navigation';
-import { Transitioning, Transition } from 'react-native-reanimated';
+import {
+  NavigationProp,
+  NavigationDescriptor,
+  NavigationState,
+  NavigationRouteConfigMap,
+  ScreenProps,
+  NavigationContainer,
+  SwitchNavigatorConfig,
+} from 'react-navigation';
+import {
+  createNavigator,
+  SceneView,
+  SwitchRouter,
+} from '@react-navigation/core';
+import {
+  TransitioningView,
+  Transitioning,
+  Transition,
+} from 'react-native-reanimated';
 
 const DEFAULT_TRANSITION = (
   <Transition.Together>
@@ -10,10 +27,18 @@ const DEFAULT_TRANSITION = (
   </Transition.Together>
 );
 
-class SwitchView extends React.Component {
-  containerRef = React.createRef();
+interface Props {
+  navigation: NavigationProp<NavigationState> & {
+    navigationConfig: { transition?: React.ElementType<Transition> };
+  };
+  descriptors: { [key: string]: NavigationDescriptor };
+  screenProps?: ScreenProps;
+}
 
-  componentDidUpdate(prevProps) {
+class AnimatedSwitchView extends React.Component<Props> {
+  containerRef = React.createRef<TransitioningView>();
+
+  componentDidUpdate(prevProps: Props) {
     const { state: prevState } = prevProps.navigation;
     const prevActiveKey = prevState.routes[prevState.index].key;
     const { state } = this.props.navigation;
@@ -25,13 +50,13 @@ class SwitchView extends React.Component {
   }
 
   render() {
-    const { state } = this.props.navigation;
+    const { state, navigationConfig } = this.props.navigation;
     const activeKey = state.routes[state.index].key;
     const descriptor = this.props.descriptors[activeKey];
     const ChildComponent = descriptor.getComponent();
 
     const transition =
-      this.props.navigationConfig.transition || DEFAULT_TRANSITION;
+      (navigationConfig && navigationConfig.transition) || DEFAULT_TRANSITION;
 
     return (
       <Transitioning.View
@@ -49,12 +74,19 @@ class SwitchView extends React.Component {
   }
 }
 
+export interface AnimatedSwitchNavigatorConfig extends SwitchNavigatorConfig {
+  transition?: React.ElementType<Transition>;
+}
+
 export default function createAnimatedSwitchNavigator(
-  routeConfigMap,
-  switchConfig = {}
-) {
+  routeConfigMap: NavigationRouteConfigMap,
+  switchConfig: SwitchNavigatorConfig & {
+    transition?: React.ElementType<Transition>;
+  }
+): NavigationContainer {
   const router = SwitchRouter(routeConfigMap, switchConfig);
-  const Navigator = createNavigator(SwitchView, router, switchConfig);
+  const Navigator = createNavigator(AnimatedSwitchView, router, switchConfig);
+
   return Navigator;
 }
 
