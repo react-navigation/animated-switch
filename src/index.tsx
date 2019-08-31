@@ -28,7 +28,10 @@ const DEFAULT_TRANSITION = (
 );
 
 interface Props {
-  navigationConfig: { transition?: React.ReactNode };
+  navigationConfig: {
+    transition?: React.ReactNode,
+    transitionViewStyle?: ViewStyle,
+  };
   navigation: NavigationProp<NavigationState>;
   descriptors: { [key: string]: NavigationDescriptor };
   screenProps?: ScreenProps;
@@ -57,7 +60,8 @@ class AnimatedSwitchView extends React.Component<Props, {}> {
 
     const transition =
       (navigationConfig && navigationConfig.transition) || DEFAULT_TRANSITION;
-    const transitionViewStyle = navigationConfig && navigationConfig.transition;
+    const transitionViewStyle =
+      (navigationConfig && navigationConfig.transitionViewStyle) || null;
 
     return (
       <Transitioning.View
