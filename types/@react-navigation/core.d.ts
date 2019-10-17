@@ -3,7 +3,9 @@ declare module '@react-navigation/core' {
   import { Transition } from 'react-native-reanimated';
   import {
     NavigationRouteConfigMap,
-    NavigationContainer,
+    NavigationNavigator,
+    NavigationProp,
+    NavigationState,
     SwitchNavigatorConfig,
     NavigationRouter,
   } from 'react-navigation';
@@ -18,7 +20,7 @@ declare module '@react-navigation/core' {
     StackView: React.ComponentType<any>,
     router: NavigationRouter<S, Options>,
     navigatorConfig?: {} | null
-  ): NavigationContainer;
+  ): NavigationNavigator<{}, NavigationProp<NavigationState>>;
 
   export function SwitchRouter(
     routeConfigMap: NavigationRouteConfigMap,
