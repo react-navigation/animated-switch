@@ -1,3 +1,7 @@
+This package has been moved to https://github.com/react-navigation/react-navigation/tree/4.x/packages/animated-switch
+
+---
+
 # react-navigation-animated-switch
 
 This navigator uses the [Reanimated Transitions API](https://github.com/kmagiera/react-native-reanimated) to animate route change transitions. Aside from the animations, it is identical to the standard [switch navigator](https://reactnavigation.org/docs/en/switch-navigator.html).
